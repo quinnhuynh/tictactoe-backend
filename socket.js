@@ -28,7 +28,7 @@ io.on('connection', (socket) => {
     socket.on('move', (arg) => {
         let uuid = arg.uuid;
         let uInfo = UserService.getUserInfo(uuid);
-        if(!uInfo.game) {
+        if(uInfo.game) {
             let newGame = Board.move(uuid, uInfo.game, arg.i, arg.j);
             UserService.setGame(uInfo.gameId, newGame);
             UserService.renewUUID(uuid);
